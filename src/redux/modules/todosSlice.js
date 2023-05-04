@@ -33,9 +33,19 @@ const todosSlice = createSlice({
       state.list.push(action.payload)
     },
     deleteTodo: (state, action) => {
-      state.list.filter((todo) => todo.id !== action.payload)
+      state.list.filter((todo) => todo.id !== action.payload.id)
     },
   },
+  extraReducers: (builder) => {
+    builder
+    .addCase(__addToDo.fulfilled, (state, action) => {
+      state.list.push(action.payload)
+    })
+    .addCase(__deleteTodo.fulfilled, (state, action) => {
+      state.list = state.list.filter((todo) => todo.id !== action.payload.id)
+    })
+    
+  }
 });
 
 export const { addTodo, deleteTodo } = todosSlice.actions;

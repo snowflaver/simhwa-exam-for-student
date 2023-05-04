@@ -21,13 +21,13 @@ function App() {
 
   const onAddTodo = () => {
     if (title && body) {
-      dispatch(__addToDo({id, title, body}))
+      dispatch(__addToDo({ id, title, body }))
       resetInputs()
-    }    
+    }
   };
 
-  const onDeleteTodo = (id) => {
-    dispatch(__deleteTodo({id}))
+  const onDeleteTodo = async (id) => {
+    dispatch(__deleteTodo({ id }))
   };
 
   const resetInputs = () => {
@@ -64,7 +64,7 @@ function App() {
             <TodoCard key={todo.id}>
               <span>제목: {todo.title}</span>
               <span>할 일: {todo.body}</span>
-              <Button onClick={onDeleteTodo(todo.id)}>삭제하기</Button>
+              <Button onClick={() => onDeleteTodo(todo.id)}>삭제하기</Button>
             </TodoCard>
           ))}
         </TodoListContainer>
